@@ -1,9 +1,8 @@
 require('src.utils.debug')
 
-local Game = require('src.game')
+local Game = require('src.game')(320, 240)
 
 function love.load()
-
 end
 
 function love.update(dt)
