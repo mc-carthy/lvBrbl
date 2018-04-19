@@ -1,3 +1,7 @@
+require('src.utils.debug')
+
+local Game = require('src.game')
+
 function love.load()
 
 end
