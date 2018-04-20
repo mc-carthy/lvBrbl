@@ -1,4 +1,6 @@
-local engine = {}
+local engine = {
+    SM = require('src/stateManager')
+}
 
 setmetatable(engine, {
     __index = engine,
@@ -15,7 +17,11 @@ function engine:init(w, h)
     game.screenWidth = love.graphics.getWidth()
     game.screenHeight = love.graphics.getHeight()
     game.ratio = math.min((game.screenHeight / game.gameHeight), game.screenWidth / game.gameWidth)
-    print(game.ratio)
+end
+
+function engine:setDefaults(filename)
+    local t = require(filename)
+    t.load()
 end
 
 return engine

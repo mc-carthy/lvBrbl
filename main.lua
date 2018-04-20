@@ -1,11 +1,12 @@
 require('src.utils.debug')
 
-local Game = require('src.game')(320, 240)
+Game = require('src.game')(320, 240)
+Game.SM:loadAll('src/states/list')
+Game.SM:start('splash')
 local Player = require('src.entities.player')
 
 function love.load()
-    love.graphics.setDefaultFilter('nearest', 'nearest')
-
+    Game:setDefaults('src/defaults')
     player = Player(32, 32, 32, 32)
 end
 
