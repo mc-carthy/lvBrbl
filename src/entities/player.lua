@@ -2,24 +2,19 @@ local Class = require('src.modules.class')
 
 local player = Class:extend('player')
 
-local speed = 100
-
 function player:new(x, y, w, h)
     self.x = x
     self.y = y
     self.w = w
     self.h = h
+    self.speedX = 100
 end
 
 function player:move(dt)
-    local right = love.keyboard.isDown('right')
-    local left = love.keyboard.isDown('left')
-
-    if right and not left then
-        self.x = self.x + speed * dt
-    elseif left and not right then
-        self.x = self.x - speed * dt
-    end
+    local right = love.keyboard.isDown('right') and 1 or 0
+    local left = love.keyboard.isDown('left') and -1 or 0
+    local moveX = self.speedX * (right + left) * dt
+    self.x = self.x + moveX
 end
 
 function player:draw()
