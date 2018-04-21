@@ -1,5 +1,11 @@
 local Class = require('src/modules/class')
+
 local sm = Class:extend('State Manager')
+
+function sm:new(filename, state)
+    self:loadAll(filename)
+    self:start(state)
+end
 
 function sm:start(state)
     self.current = self.list[state]

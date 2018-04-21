@@ -1,5 +1,6 @@
 local engine = {
-    SM = require('src/stateManager')
+    SM = require('src/stateManager')('src/states/list', 'splash'),
+    Input = require('src/inputManager')()
 }
 
 setmetatable(engine, {

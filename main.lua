@@ -1,13 +1,13 @@
 require('src.utils.debug')
 
 Game = require('src.game')(320, 240)
-Game.SM:loadAll('src/states/list')
-Game.SM:start('splash')
-local Player = require('src.entities.player')
+Player = require('src.entities.player')
 
 function love.load()
     Game:setDefaults('src/defaults')
     player = Player(32, 32, 32, 32)
+    Game.Input:add('test', 'keypressed', 'h', function() print('Hello!') end)
+    Game.Input:add('Quit Game', 'keypressed', 'escape', function() love.event.quit() end)
 end
 
 function love.update(dt)
@@ -22,7 +22,9 @@ function love.draw()
 end
 
 function love.keypressed(key)
-    if key == 'escape' then
-        love.event.quit()
-    end
+    Game.Input:check(key, 'keypressed')
+end
+
+function love.keyreleased(key)
+    Game.Input:check(key, 'keyreleased')
 end
